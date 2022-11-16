@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TallerSemana6.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Listado de usuarios" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Label x:Name="lblcodigo" Text="Codigo                               Nombre                       Estado"/>
+        <ListView x:Name="MyListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Entry x:Name="txtCodigo" Text="{Binding codigo}" Grid.Column="0" Grid.Row="0"/>
+                                <Entry x:Name="txtNombre" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0"/>
+                                <Entry x:Name="txtEstado" Text="{Binding estado}" Grid.Column="2" Grid.Row="0"/>
+                                
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="btnIrIngreso" Text="Nuevo" Clicked="btnIrIngreso_Clicked"/>
+        <Button x:Name="btnModificar" Text="Modificar" Clicked="btnModificar_Clicked"/>
+        <Button x:Name="btnEliminar" Text="Eliminar" Clicked="btnEliminar_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
