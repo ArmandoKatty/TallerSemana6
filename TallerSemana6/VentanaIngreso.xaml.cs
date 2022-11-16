@@ -13,7 +13,7 @@ namespace TallerSemana6
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VentanaIngreso : ContentPage
     {
-        private const string URL = "http://172.17.240.1/simov/post.php";
+        private const string URL = "http://192.168.1.197/simov/post.php";
         public VentanaIngreso()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace TallerSemana6
 
         private async void btnRegresar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopToRootAsync();
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }

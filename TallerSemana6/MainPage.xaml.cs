@@ -13,7 +13,7 @@ namespace TallerSemana6
 {
     public partial class MainPage : ContentPage
     {
-        private const string URL = "http://172.17.240.1/simov/post.php";
+        private const string URL = "http://192.168.1.197/simov/post.php";
         private readonly HttpClient client = new HttpClient();
         private ObservableCollection<Datos> _post;
         public MainPage()
@@ -28,6 +28,7 @@ namespace TallerSemana6
             List<Datos> post = JsonConvert.DeserializeObject<List<Datos>>(content);
             _post= new ObservableCollection<Datos>(post);
             MyListView.ItemsSource = _post;
+
         }
 
         private async void btnIrIngreso_Clicked(object sender, EventArgs e)
@@ -43,6 +44,8 @@ namespace TallerSemana6
            Datos post = _post[0];
            await client.DeleteAsync($"{URL}?codigo={post.codigo}");
            _post.Remove(post);
+            await DisplayAlert("Correcto", "Dato eliminado con éxito", "aceptar");
+            await Navigation.PushAsync(new MainPage());
         }
 
         private async void btnModificar_Clicked(object sender, EventArgs e)
@@ -52,7 +55,8 @@ namespace TallerSemana6
             post.nombre = _post[0].nombre;
             post.estado = _post[0].estado;
             await client.PutAsync($"{URL}?codigo={post.codigo}&nombre={post.nombre}&estado={post.estado}", null);
-            DependencyService.Get<Mensaje>().ShortAlert("Dato actualizado");
+            await DisplayAlert("Correcto", "Dato actualizado con éxito", "aceptar");
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }
